@@ -23,16 +23,23 @@ BFS::plan(const size_t& startRow, const size_t& startCol, const size_t& endRow, 
 	frontier_.push_back( start ) ;
 	cameFrom_.insert( std::make_pair(start, start) ) ;
 
+	bool exists_path = false ;
 	while( !frontier_.empty() ) {
 		auto current = frontier_.front() ;
 		frontier_.pop_front() ;
 
 		if (current == goal) {
+			exists_path = true ;
 			break ;
 		}
 
 		get_neighbors(current) ;
 	} /* while */
+
+	if (!exists_path) {
+		std::cerr << "The goal is unreachable. Failed to find a valid trajectory.\n" ;
+		return ;
+	}
 
 	/* back-tracking trajectory */
 	auto backtrackIt = cameFrom_.find(goal) ;
