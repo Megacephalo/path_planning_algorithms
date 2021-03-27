@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>140</y>
+      <w>640</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>GridLocation
+--
++ x : int
++ y: int
++ cost : double
++ heuristic : double
++ total_cost : double = cost + heuristic
+
+--
+
++ GridLocation(x_ : int, y_ : int, cost_ : double, heurstic_ : double, total_cost_ : double)
++ GridLocation(cell : GridLocation)
++ operator == (x : int, y : int) : bool
++ operator &lt; (const loc : GridLocation) : bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1090</x>
+      <y>420</y>
+      <w>480</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Path_planner
+--
+
+# grid : Grid
+# directions : GridLocation[]
+# trajectory : GridLocation[]
+
+--
+
+# plan(startRow : int, startCol : int, endRow : int, endCol : int)
++ getTrajectory() : GridLocation[]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>730</y>
+      <w>510</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>BFS
+--
+
+- frontier : GridLocation[]
+
+--
+
++ plan(startRow : int, startCol : int, endRow : int, endCol : int)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1310</x>
+      <y>350</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>970</x>
+      <y>600</y>
+      <w>370</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>350.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1930</x>
+      <y>730</y>
+      <w>590</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>A_Star
+--
+
+- open : Min_priority_queue
+- closed: GridLocation[]       // hash set
+
+--
+
++ plan(startRow : int, startCol : int, endRow : int, endCol : int)
+- get_neighbors(cell GridLocation, open : GridLocation[], closed : GridLocation[])
+- calc_heuristics() : double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1320</x>
+      <y>600</y>
+      <w>940</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;920.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1330</x>
+      <y>730</y>
+      <w>510</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Dijkstra
+--
+
+- open : GridLocation[]     // priority queue
+- closed : GridLocation[]   // hash set
+
+--
+
++ plan(startRow : int, startCol : int, endRow : int, endCol : int)
+- get_neighbors(cell GridLocation, open : GridLocation[], closed : GridLocation[])</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1680</x>
+      <y>140</y>
+      <w>540</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>Min_priority_queue
+--
+**GridHasher**
++ operator() (a : GridLocation, b: GridLocation) : size_t
+
+--
+- sort_queue : set&lt;GridLocation&gt;
+- dict_queue : unordered_set&lt;GridLocation, GridHasher&gt;
+- sort_it : set&lt;GridLocation&gt;::iterator
+- dict_it : unordered_set&lt;GridLocation&gt;::iterator
+
+--
+
++ top() : GridLocation
++ empty() : bool
++ size() : size_t
++ push() : void
++ pop() : void
++ begin() : unordered_set&lt;GridLocation&gt;::iterator
++ end() : unordered_set&lt;GridLocation&gt;::iterator
++ find(cell : GridLocation) : unordered_set&lt;GridLocation&gt;::iterator
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1550</x>
+      <y>220</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1570</x>
+      <y>460</y>
+      <w>390</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>370.0;10.0;10.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1940</x>
+      <y>460</y>
+      <w>320</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;300.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1320</x>
+      <y>600</y>
+      <w>270</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2380</x>
+      <y>150</y>
+      <w>340</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Heuristics
+--
+
+# goal : GridLocation
+
+--
+
++ Heuristics()
++ Heuristics( goal : GridLocation)
+
++ set_goal(goal : GridLocation) : void
+# calc(cell : GridLocation) : double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2360</x>
+      <y>420</y>
+      <w>320</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Euclidean
+--
+
++ calc(cell : GridLocation) : double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2280</x>
+      <y>70</y>
+      <w>290</w>
+      <h>680</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>270.0;80.0;270.0;10.0;10.0;10.0;10.0;660.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2490</x>
+      <y>330</y>
+      <w>80</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2710</x>
+      <y>420</y>
+      <w>320</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Manhattan
+--
+
++ calc(cell : GridLocation) : double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2550</x>
+      <y>330</y>
+      <w>340</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;320.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3080</x>
+      <y>420</y>
+      <w>270</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Diagonal
+--
+
++ calc(cell : GridLocation) : double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>30</y>
+      <w>1330</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0;1310.0;10.0;1310.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2570</x>
+      <y>330</y>
+      <w>670</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;650.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>340</y>
+      <w>370</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>Grid
+--
+
+- raw_grid : int[][]
+- canvas_grid : char[][]
+- width_ : int
+- height_ : int
+
+--
+
++ Grid(grid_in : int[][])
++ Grid(grid : Grid)
+
++ at(x : int, y: int) : int
++ at(x : size_t, y: size_t) : int
++ get_canvas() : char[][]
++ width() : int
++ height() : int
++ total_cells() : int
++ empty() : bool
++ is_traversible_at(x : int, y: int) : bool
++ is_traversible_at(x : size_t, y: size_t) : bool
++ update_trajectory( traj : GridLocation[]) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>420</y>
+      <w>290</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Visualizer
+--
++ Visualizer(canvas_grid: char[][])
++ draw() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>450</y>
+      <w>160</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>510</y>
+      <w>330</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>230</y>
+      <w>350</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>330.0;10.0;10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>280</x>
+      <y>260</y>
+      <w>290</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>In the context of being thread-safe, there should be mutex and locks added to the Grid class.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>930</x>
+      <y>60</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>If thread-safety is a concern, mutexes and locks should be added to GridLocation class.</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
