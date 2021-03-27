@@ -8,6 +8,7 @@
 #include <exception>
 #include <list>
 #include <utility>
+#include <queue>
 #include <unordered_map>
 #include <algorithm>			// std::reverse
 
