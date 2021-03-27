@@ -3,6 +3,7 @@ add_library(Path_planning
 	grid.cpp
 	path_planner_base.cpp
 	BFS.cpp
+	min_priority_queue.cpp
 )
 target_link_libraries(Path_planning
 	${THIRD_PARTIES}
