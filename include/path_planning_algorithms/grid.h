@@ -5,12 +5,7 @@
 TODO: optimize the update of canvas_grid_ to be pointer-based
 **/
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <memory>
-#include <exception>
-
+#include "common_includes.h"
 #include "gridLocation.h"
 
 namespace Path_Planning_Algorithms {
@@ -55,19 +50,6 @@ struct Grid {
   	
 } ; /* End of class*/
 
-
-
-template <typename T>
-std::ostream& operator << (std::ostream& os, const std::vector< std::vector<T> >& grid) {
-	os << std::endl ;
-	for (auto& row : grid) {
-		for (auto& cell : row) {
-			os << cell << "  " ;
-		}
-		os << std::endl ;
-	}
-	return os ;
-} /* End of operator << overloading for grid */
 
 std::ostream& operator << (std::ostream& os, const Grid& grid) ;
 

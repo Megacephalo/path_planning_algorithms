@@ -1,6 +1,8 @@
 add_library(Path_planning
 	gridLocation.cpp
 	grid.cpp
+	path_planner_base.cpp
+	BFS.cpp
 )
 target_link_libraries(Path_planning
 	${THIRD_PARTIES}

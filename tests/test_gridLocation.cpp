@@ -46,7 +46,7 @@ TEST(GridLocationTests, assignment_operator_test) {
 TEST(GridLocationTests, equal_operator_test) {
 	GridLocation cell_A(1, 2, 3, 4) ;
 	GridLocation cell_B(1, 2, 3, 4) ;
-	GridLocation cell_C ;
+	GridLocation cell_C(0, 0, 0, 0) ;
 
 	ASSERT_EQ(cell_A, cell_B) ;
 	ASSERT_FALSE(cell_A == cell_C) ;

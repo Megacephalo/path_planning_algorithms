@@ -66,8 +66,6 @@ Grid::at(const size_t& x, const size_t& y) {
 	return raw_grid_.at(x).at(y) ;
 } /* End of at */
 
-
-
 void
 Grid::set_start(const GridLocation& start) {
 	size_t x = start.x ;
@@ -89,12 +87,7 @@ Grid::set_start(const size_t& startRow, const size_t& startCol) {
 	startRow_ = startRow ;
 	startCol_ = startCol ;
 
-	if (startRow_ != endRow_ && startCol_ != endCol_) {
-		raw_grid_.at(startRow_).at(startCol_) = 2 ;
-	}
-	else {
-		raw_grid_.at(startRow_).at(startCol_) = 4 ;	
-	}
+	raw_grid_.at(startRow_).at(startCol_) = 2 ;
 } /* End of set_start */
 
 void
@@ -148,6 +141,7 @@ Grid::get_canvas() const {
 	auto char_grid = char_2d(raw_grid_.size()) ;
 	size_t i = 0 ;
 	for (auto& row : raw_grid_) {
+		size_t j = 0 ;
 		for (auto& cell : row) {
 			const char* symbol ;
 			/* passible cell */
@@ -179,6 +173,8 @@ Grid::get_canvas() const {
 				symbol = " " ;
 			}
 			char_grid.at(i).push_back( symbol ) ;
+
+			++j ;
 		}
 		++i ;
 	}
