@@ -5,6 +5,7 @@ namespace Path_Planning_Algorithms {
 AStar::AStar(const Grid& grid)
 : Path_Planner(grid)
 , H_(std::make_unique<Euclidean>())
+// , H_(std::make_unique<Diagonal>())
 {} /* End of constructor */
 
 void

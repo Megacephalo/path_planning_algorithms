@@ -8,6 +8,7 @@
 #include "min_priority_queue.h"
 #include "heuristics.h"
 #include "euclidean_heuristics.h"
+#include "diagonal_heuristics.h"
 
 namespace Path_Planning_Algorithms {
 

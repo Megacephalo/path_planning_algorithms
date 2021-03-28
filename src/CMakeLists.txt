@@ -8,6 +8,7 @@ add_library(Path_planning
 	heuristics.cpp
 	euclidean_heuristics.cpp
 	manhattan_heuristics.cpp
+	diagonal_heuristics.cpp
 	A_star.cpp
 
 )
