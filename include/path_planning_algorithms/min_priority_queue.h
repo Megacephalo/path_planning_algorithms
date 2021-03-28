@@ -20,6 +20,7 @@ template < typename T = GridLocation,
 		   typename Compare = minPriorQueue_Comp >
 struct Min_Priority_Queue : public std::priority_queue<T, Container, Compare> {
 	typedef typename std::priority_queue<T, Container, Compare>::container_type::const_iterator const_iterator ;
+	typedef typename std::priority_queue<T, Container, Compare>::container_type::iterator Iterator ;
 
 	const_iterator find(const T& cell) const {
 		auto foundIt = this->c.begin() ;
@@ -33,6 +34,19 @@ struct Min_Priority_Queue : public std::priority_queue<T, Container, Compare> {
 
 		return last ;
 	} /* End of find */
+
+	Iterator Find(T& cell) {
+		auto foundIt = this->c.begin() ;
+		auto last = this->c.end() ;
+		while(foundIt != last) {
+			if (*foundIt == cell) {
+				return foundIt ;
+			}
+			++foundIt ;
+		}
+
+		return last ;
+	} /* End of Find */
 
 	const_iterator begin() const {
 		return this->c.begin() ;
