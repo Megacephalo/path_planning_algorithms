@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
 	} ;
 	Grid grid(vectGrid) ;
 
-	GridLocation start(0, 0), goal(vectGrid.size() - 1, vectGrid.at(0).size() - 1) ; 
+	GridLocation start(0, 0), goal( grid.height(), grid.width() ) ; 
 	
 	grid.set_goal( goal ) ;
 	grid.set_start( start ) ;
