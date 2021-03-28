@@ -16,10 +16,11 @@ class BFS : public Path_Planner {
   	void plan(const size_t& startRow, const size_t& startCol, const size_t& endRow, const size_t& endCol) ;
   private:
   	std::list<GridLocation> frontier_ ;
-  	/* (the node, its predecessor) */
-  	std::unordered_map<GridLocation, GridLocation, GridLocation::Hasher> cameFrom_ ;
+  	std::list<GridLocation> closed_ ;
 
   	void get_neighbors( const GridLocation& cell) ;
+  	bool not_opened(const GridLocation& cell) const ;
+  	bool in_closed(const GridLocation& cell) const ;
 } ; /* End of cass */
 
 } /* End of namespace */

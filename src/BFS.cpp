@@ -28,6 +28,8 @@ BFS::plan(const size_t& startRow, const size_t& startCol, const size_t& endRow, 
 		auto current = frontier_.front() ;
 		frontier_.pop_front() ;
 
+		closed_.push_back(current) ;
+
 		if (current == goal) {
 			exists_path = true ;
 			break ;
@@ -41,22 +43,8 @@ BFS::plan(const size_t& startRow, const size_t& startCol, const size_t& endRow, 
 		return ;
 	}
 
-	/* back-tracking trajectory */
-	auto backtrackIt = cameFrom_.find(goal) ;
-	trajectory_.push_back(goal) ;
-	while( backtrackIt != cameFrom_.find(start) ) {
-		auto predecessor = backtrackIt->second ;
+	extract_trajectory(start, goal) ;
 
-		if (predecessor == backtrackIt->first) continue ;
-
-		trajectory_.push_back(predecessor) ;
-
-		backtrackIt = cameFrom_.find(predecessor) ;
-	}
-
-	std::reverse(trajectory_.begin(), trajectory_.end()) ;
-
-	grid_.update_trajectory(trajectory_) ;
 } /* End of plan */
 
 void
@@ -64,18 +52,27 @@ BFS::get_neighbors( const GridLocation& cell) {
 	for (auto& direction : directions_) {
 		int neighbor_row = cell.x + direction.x ;
 		int neighbor_col = cell.y + direction.y ;
-
-		if (!grid_.is_traversible_at(neighbor_row, neighbor_col)) continue ;
-
 		int neighbor_cost = cell.cost + 1 ;
 		GridLocation neighbor(neighbor_row, neighbor_col, neighbor_cost) ;
 
-		if ( cameFrom_.find(neighbor) == cameFrom_.end() ) {
+		if ( !grid_.is_traversible_at(neighbor_row, neighbor_col) || in_closed(neighbor) ) continue ;
+
+		if ( not_in_cameFrom(neighbor) && not_opened(neighbor)) {
 			frontier_.push_back(neighbor) ;
 			cameFrom_.insert( std::make_pair(neighbor, cell) ) ;
 		}
 
 	}
 } /* End of get_neighbors */
+
+bool
+BFS::not_opened(const GridLocation& cell) const {
+	return std::find(frontier_.begin(), frontier_.end(), cell) == frontier_.end() ;
+} /* end of not_opened */
+
+bool
+BFS::in_closed(const GridLocation& cell) const {
+	return std::find(closed_.begin(), closed_.end(), cell) != closed_.end() ;
+} /* End of not_in_closed */
 
 } /* End of namespace */
