@@ -53,7 +53,7 @@ AStar::get_neighbors(const GridLocation& cell) {
 	for (auto& direction : directions_) {
 		int neighbor_row = cell.x + direction.x ;
 		int neighbor_col = cell.y + direction.y ;
-		int neighbor_cost = cell.cost + 1 ;
+		double neighbor_cost = cell.cost + 1. ;
 		GridLocation neighbor(neighbor_row, neighbor_col, neighbor_cost, H_->calc(neighbor_row, neighbor_col) ) ;
 
 		if ( !grid_.is_traversible_at(neighbor_row, neighbor_col) || is_closed(neighbor) ) continue ;
@@ -65,6 +65,10 @@ AStar::get_neighbors(const GridLocation& cell) {
 			if ( not_in_cameFrom(neighbor) ) {
 				cameFrom_.insert( std::make_pair(neighbor, cell) ) ;	
 			}
+		}
+		/* if the node is already explored, but we are finding a lower cost for the same node, relax it. */ 
+		else {
+			opened_.Find(neighbor)->cost = std::min( opened_.Find(neighbor)->cost, neighbor_cost ) ;
 		}
 	} /* for */
 } /* End of get_neighbors */
