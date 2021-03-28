@@ -9,6 +9,7 @@
 #include "dijkstra.h"
 #include "heuristics.h"
 #include "euclidean_heuristics.h"
+#include "manhattan_heuristics.h"
 #include "A_star.h"
 
 #endif /* _ALL_HEADERS_H_ */

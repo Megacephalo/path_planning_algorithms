@@ -13,6 +13,7 @@
 #include <unordered_map>
 #include <algorithm>			// std::reverse
 #include <cmath>
+#include <cstdlib>
 
 namespace Path_Planning_Algorithms {
 

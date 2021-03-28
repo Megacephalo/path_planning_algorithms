@@ -7,6 +7,7 @@ add_library(Path_planning
 	dijkstra.cpp
 	heuristics.cpp
 	euclidean_heuristics.cpp
+	manhattan_heuristics.cpp
 	A_star.cpp
 
 )
