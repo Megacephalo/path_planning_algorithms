@@ -5,6 +5,10 @@ add_library(Path_planning
 	BFS.cpp
 	min_priority_queue.cpp
 	dijkstra.cpp
+	heuristics.cpp
+	euclidean_heuristics.cpp
+	A_star.cpp
+
 )
 target_link_libraries(Path_planning
 	${THIRD_PARTIES}

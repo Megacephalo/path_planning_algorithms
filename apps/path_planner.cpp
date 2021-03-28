@@ -36,5 +36,12 @@ int main(int argc, char** argv) {
 
 	std::cout  << "Trajectory: " << planner->get_grid().get_canvas() << std::endl ;
 
+	std::cout << "Using A* planner.\n" ;
+	planner = std::make_unique<AStar>(grid) ;
+
+	planner->plan(start, goal) ;
+
+	std::cout  << "Trajectory: " << planner->get_grid().get_canvas() << std::endl ;
+
 	return 0 ;
 }
