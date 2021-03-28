@@ -22,7 +22,15 @@ int main(int argc, char** argv) {
 	std::cout << "Given map:" << grid.get_canvas() << std::endl ;
 
 	/* Using BFS planner */
+	std::cout << "Using BFS Planner\n" ;
 	std::unique_ptr<Path_Planner> planner = std::make_unique<BFS>(grid) ;
+
+	planner->plan(start, goal) ;
+
+	std::cout  << "Trajectory: " << planner->get_grid().get_canvas() << std::endl ;
+
+	std::cout << "Using Dijkstra planner.\n" ;
+	planner = std::make_unique<Dijkstra>(grid) ;
 
 	planner->plan(start, goal) ;
 

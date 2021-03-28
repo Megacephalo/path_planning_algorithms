@@ -9,6 +9,7 @@
 #include <list>
 #include <utility>
 #include <queue>
+#include <unordered_set>
 #include <unordered_map>
 #include <algorithm>			// std::reverse
 
