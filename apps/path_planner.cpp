@@ -21,9 +21,11 @@ int main(int argc, char** argv) {
 
 	std::cout << "Given map:" << grid.get_canvas() << std::endl ;
 
+	std::unique_ptr<Path_Planner> planner = nullptr ;
+
 	/* Using BFS planner */
 	std::cout << "Using BFS Planner\n" ;
-	std::unique_ptr<Path_Planner> planner = std::make_unique<BFS>(grid) ;
+	planner = std::make_unique<BFS>(grid) ;
 
 	planner->plan(start, goal) ;
 

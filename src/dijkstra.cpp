@@ -65,6 +65,9 @@ Dijkstra::get_neighbors(const GridLocation& cell) {
 		/* if the node is already explored, but we are finding a lower cost for the same node, relax it. */ 
 		else {
 			opened_.Find(neighbor)->cost = std::min( opened_.Find(neighbor)->cost, neighbor_cost ) ;
+			if (!not_in_cameFrom(neighbor)) {
+				cameFrom_.find(neighbor)->second = cell ;
+			}
 		}
 	} /* for */
 } /* End of get_neighbors */
